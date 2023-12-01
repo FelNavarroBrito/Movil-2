@@ -2,10 +2,30 @@
 
 <ion-content>
 
-    <!--GEOLOCACION -->
+    <!--GEOLOCACION 
 
     <ion-button (click)="getCurrentLocation()" expand="block" fill="clear" shape="round">
         Locacion
     </ion-button>
+
+    -->
+
+    <div class="d-flex-center">
+
+        <div class="button-container">
+            <ion-button expand="block" mode="ios" class="submit" routerLink="" type="submit">
+                ¡Registra tu asistencia!
+                <ion-icon slot="end" name="accessibility-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button class="ion-margin-top" routerLink="" expand="block" mode="ios">
+                Localizar
+                <ion-icon slot="end" name="location-outline"></ion-icon>
+            </ion-button>
+        </div>
+
+    </div>
+
+
 
 </ion-content>

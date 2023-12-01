@@ -3,9 +3,31 @@ import { Router, RouterModule } from '@angular/router';
 import { LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { retry, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
+  
+// INTEGRACION API(intento ejemplo) 
+  
+export class ApiService{
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    })
+  }
+
+  ApiURL = 'https://jsonplaceholder.typicode.com'
+
+  constructor(private http:HttpClient) {  }
+}
+
+// UTILIDADES
+  
 export class UtilsService {
 
   loadingCtrl = inject(LoadingController);
