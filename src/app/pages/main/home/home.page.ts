@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class HomePage implements OnInit {
 
   firebaseSvc = inject(FirebaseService);
-  utilSvc = inject(UtilsService)
+  utilSvc = inject(UtilsService);
 
   ngOnInit() {
   }
@@ -19,6 +20,32 @@ export class HomePage implements OnInit {
 
  // signOut() {
  //   this.firebaseSvc.signOut();
- // }
+  // }
+  
+  //===========GEOLOCACION==========
 
+  async getCurrentLocation() {
+    try {
+      const permissionStatus = await Geolocation.checkPermissions();
+      console.log('Permision status: ', permissionStatus.location);
+      if (permissionStatus?.location != 'granted') {
+        const requestStatus = await Geolocation.requestPermissions();
+        if (requestStatus.location != 'granted') {
+          //go to settings
+          return;
+        }
+      }
+      let options: PositionOptions = {
+        maximumAge: 3000,
+        timeout: 10000,
+        enableHighAccuracy: true
+      };
+      const position = await Geolocation.getCurrentPosition(options);
+      console.log(position);
+    } catch (e) {
+      console.log(e);
+      throw (e);
+    }
+  }
+  
 }

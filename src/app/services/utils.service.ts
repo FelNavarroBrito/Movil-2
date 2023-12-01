@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
@@ -73,5 +73,8 @@ async takePicture(promptLabelHeader: string) {
   dismissModal(data?: any) {
     return this.modalCtrl.dismiss(data);
   }
+
+  //// 404
+
 
 }
